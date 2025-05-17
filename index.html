@@ -2,198 +2,487 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sweet Delights - Cake Shop</title>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    /* Reset & basics */
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff0f5;
+      color: #333;
+      line-height: 1.6;
       scroll-behavior: smooth;
     }
-    header {
-      background: #ff85a2;
-      padding: 1em;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      color: white;
-    }
-    nav a {
-      margin: 0 1em;
-      color: white;
+    a {
+      color: #ff4d6d;
       text-decoration: none;
-      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background-color: #ff4d6d;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      text-align: center;
+      color: white;
+    }
+    header nav {
+      margin-top: 0.5rem;
+    }
+    header nav a {
+      margin: 0 0.8rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
       transition: color 0.3s;
     }
-    nav a:hover {
+    header nav a:hover {
       color: #ffe2ec;
     }
+
+    /* Hero Section */
     .hero {
-      background: url('https://source.unsplash.com/1600x400/?cake') no-repeat center center/cover;
-      color: white;
-      text-align: center;
-      padding: 5em 1em;
-    }
-    .products {
+      background: url('https://source.unsplash.com/1600x400/?cake,dessert') no-repeat center/cover;
+      height: 320px;
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       justify-content: center;
-      gap: 2em;
-      padding: 2em;
+      color: white;
+      text-shadow: 2px 2px 5px #000;
+      font-size: 2.5rem;
+      font-weight: 700;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    /* Products */
+    .products {
+      max-width: 1200px;
+      margin: 2rem auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 1.5rem;
+      padding: 0 1rem;
     }
     .product {
-      width: 250px;
-      border: 1px solid #eee;
-      padding: 1em;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      padding: 1rem;
+      transition: transform 0.3s ease;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
     .product:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
+      box-shadow: 0 8px 16px rgb(0 0 0 / 0.15);
     }
     .product img {
       width: 100%;
+      max-height: 160px;
+      object-fit: cover;
       border-radius: 8px;
+      margin-bottom: 1rem;
     }
-    .about, .testimonials, .features, .contact-form, .newsletter {
-      padding: 2em;
-      background: #fff0f5;
+    .product h3 {
+      margin-bottom: 0.5rem;
+      color: #ff4d6d;
+    }
+    .product p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    /* Sections */
+    section {
+      max-width: 900px;
+      margin: 3rem auto;
+      background: white;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+    }
+    section h2 {
+      margin-bottom: 1rem;
+      color: #ff4d6d;
       text-align: center;
+      font-size: 2rem;
     }
-    .testimonial {
-      margin: 1em 0;
-      font-style: italic;
+    section p {
+      font-size: 1rem;
+      color: #444;
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.5;
     }
+
+    /* Features grid */
     .features-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2em;
-      margin-top: 2em;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
     }
     .feature {
-      width: 300px;
-      padding: 1em;
-      background: white;
+      background: #ffe6f0;
+      padding: 1rem;
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: inset 0 0 5px rgb(255 77 109 / 0.15);
+      text-align: center;
     }
+    .feature h3 {
+      color: #c70039;
+      margin-bottom: 0.7rem;
+    }
+    .feature p {
+      font-size: 0.95rem;
+      color: #5a2d3e;
+    }
+
+    /* Testimonials */
+    .testimonial {
+      font-style: italic;
+      margin: 1rem auto;
+      max-width: 600px;
+      color: #555;
+      position: relative;
+      padding-left: 1.3rem;
+    }
+    .testimonial span {
+      display: block;
+      font-style: normal;
+      font-weight: 700;
+      color: #ff4d6d;
+      margin-top: 0.4rem;
+      text-align: right;
+    }
+    .testimonial::before {
+      content: "“";
+      font-size: 3rem;
+      color: #ffb3c1;
+      position: absolute;
+      left: 0;
+      top: -10px;
+    }
+
+    /* Newsletter */
+    .newsletter {
+      text-align: center;
+    }
+    .newsletter input[type="email"] {
+      padding: 0.8rem 1rem;
+      width: 280px;
+      max-width: 90%;
+      border: 2px solid #ff4d6d;
+      border-radius: 25px 0 0 25px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .newsletter input[type="email"]:focus {
+      border-color: #c70039;
+    }
+    .newsletter button {
+      padding: 0.8rem 1.6rem;
+      font-size: 1rem;
+      border: none;
+      background-color: #ff4d6d;
+      color: white;
+      border-radius: 0 25px 25px 0;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .newsletter button:hover {
+      background-color: #c70039;
+    }
+
+    /* Contact Form */
     .contact-form form {
       max-width: 400px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
+      gap: 1rem;
     }
-    .contact-form input,
-    .contact-form textarea {
-      margin: 0.5em 0;
-      padding: 0.75em;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+    .contact-form input, .contact-form textarea {
+      padding: 0.75rem;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      resize: vertical;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #ff4d6d;
     }
     .contact-form button {
-      background: #ff85a2;
+      background-color: #ff4d6d;
       color: white;
-      padding: 0.75em;
+      font-weight: 600;
+      padding: 0.75rem;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s;
+      font-size: 1rem;
+      transition: background-color 0.3s;
     }
     .contact-form button:hover {
-      background: #ff5c84;
+      background-color: #c70039;
     }
     .confirmation {
-      display: none;
-      margin-top: 1em;
+      margin-top: 1rem;
       color: green;
+      text-align: center;
+      display: none;
+      font-weight: 600;
     }
-    .newsletter input {
-      padding: 0.75em;
-      margin: 0.5em;
-      width: 250px;
-      max-width: 90%;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+
+    /* Policy Sections */
+    .policy-section {
+      background: #ffe6f0;
+      color: #5a2d3e;
+      padding: 1.5rem;
+      border-radius: 12px;
+      max-width: 900px;
+      margin: 3rem auto;
+      box-shadow: inset 0 0 10px rgb(255 77 109 / 0.3);
     }
-    .newsletter button {
-      padding: 0.75em 1.5em;
-      border: none;
-      border-radius: 5px;
-      background: #ff85a2;
-      color: white;
-      cursor: pointer;
+    .policy-section h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #c70039;
     }
-    .newsletter button:hover {
-      background: #ff5c84;
+    .policy-section p {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 1.5;
+      font-size: 1rem;
     }
+
+    /* Footer */
     footer {
-      background: #ff85a2;
+      background-color: #ff4d6d;
       color: white;
       text-align: center;
-      padding: 1em;
+      padding: 1.2rem 1rem;
+      margin-top: 2rem;
     }
+    footer nav a {
+      color: white;
+      margin: 0 0.7rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    footer nav a:hover {
+      color: #ffe2ec;
+    }
+
+    /* WhatsApp button */
     .whatsapp-btn {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 25px;
+      right: 25px;
       background-color: #25D366;
       color: white;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
+      font-size: 28px;
+      width: 58px;
+      height: 58px;
       text-align: center;
-      line-height: 60px;
-      font-size: 30px;
+      line-height: 58px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
       z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      animation: pulse 1.5s infinite;
-      text-decoration: none;
+      transition: transform 0.3s ease;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
     }
-    [data-aos] {
-      transition: all 0.6s ease-in-out;
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      header nav a {
+        display: inline-block;
+        margin: 0.5rem 0.5rem;
+        font-size: 0.9rem;
+      }
+      .hero {
+        font-size: 1.8rem;
+        height: 250px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Existing content remains unchanged -->
 
-  <section class="newsletter" data-aos="fade-up">
-    <h2>Join Our Cake Lovers Club!</h2>
-    <p>Subscribe to receive exclusive offers, news, and sweet surprises.</p>
-    <input type="email" placeholder="Enter your email address">
-    <button>Subscribe</button>
+  <header>
+    <h1>Sweet Delights</h1>
+    <nav>
+      <a href="#cakes">Cakes</a>
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#newsletter">Subscribe</a>
+      <a href="#contact">Contact</a>
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#returns">Return Policy</a>
+    </nav>
+  </header>
+
+  <section class="hero" role="banner" aria-label="Delicious cakes hero banner">
+    Delicious Cakes for Every Occasion
   </section>
 
-  <!-- Footer and scripts remain unchanged -->
-  <footer data-aos="fade-up">
-    <p>Contact us at: sweetdelights@example.com</p>
+  <section id="cakes" class="products" aria-label="Our Cake Products">
+    <article class="product" tabindex="0">
+      <img src="https://source.unsplash.com/300x180/?chocolate-cake" alt="Chocolate Fudge Cake" />
+      <h3>Chocolate Fudge</h3>
+      <p>Rich, moist and decadent.</p>
+    </article>
+    <article class="product" tabindex="0">
+      <img src="https://source.unsplash.com/300x180/?strawberry-cake" alt="Strawberry Dream Cake" />
+      <h3>Strawberry Dream</h3>
+      <p>Light and fruity delight.</p>
+    </article>
+    <article class="product" tabindex="0">
+      <img src="https://source.unsplash.com/300x180/?vanilla-cake" alt="Classic Vanilla Cake" />
+      <h3>Classic Vanilla</h3>
+      <p>Timeless and elegant.</p>
+    </article>
+  </section>
+
+  <section id="about">
+    <h2>About Sweet Delights</h2>
+    <p>At Sweet Delights, we believe that every celebration deserves a delicious cake. Our cakes are made with the finest ingredients and lots of love. Whether it's a birthday, wedding, or just a sweet craving, we're here to make your moments unforgettable.</p>
+  </section>
+
+  <section id="features">
+    <h2>Our Features</h2>
+    <div class="features-list">
+      <div class="feature" tabindex="0">
+        <h3>Custom Cakes</h3>
+        <p>Design your dream cake with our custom order options.</p>
+      </div>
+      <div class="feature" tabindex="0">
+        <h3>Same-Day Delivery</h3>
+        <p>Get your cakes delivered fresh on the same day.</p>
+      </div>
+      <div class="feature" tabindex="0">
+        <h3>Allergy-Friendly Options</h3>
+        <p>We offer gluten-free, dairy-free, and nut-free cakes.</p>
+      </div>
+      <div class="feature" tabindex="0">
+        <h3>Subscription Boxes</h3>
+        <p>Monthly cake surprises delivered to your door.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <h2>What Our Customers Say</h2>
+    <blockquote class="testimonial" tabindex="0">
+      Absolutely the best cakes in town! So moist and flavorful.
+      <span>- Emily R.</span>
+    </blockquote>
+    <blockquote class="testimonial" tabindex="0">
+      Ordered a custom cake for my wedding and it was stunning and delicious!
+      <span>- Jason M.</span>
+    </blockquote>
+    <blockquote class="testimonial" tabindex="0">
+      Friendly service and amazing taste. I’m a repeat customer for life.
+      <span>- Priya K.</span>
+    </blockquote>
+  </section>
+
+  <section id="newsletter" class="newsletter" aria-label="Subscribe to newsletter">
+    <h2>Join Our Cake Lovers Club!</h2>
+    <p>Subscribe to receive exclusive offers, news, and sweet surprises.</p>
+    <form id="newsletterForm" onsubmit="subscribeNewsletter(event)">
+      <input type="email" id="emailInput" placeholder="Enter your email address" required aria-label="Email address" />
+      <button type="submit">Subscribe</button>
+    </form>
+    <p id="newsletterMsg" style="color:green; display:none; margin-top: 0.75rem;">Thank you for subscribing!</p>
+  </section>
+
+  <section id="contact" class="contact-form" aria-label="Contact form">
+    <h2>Contact Us</h2>
+    <form id="contactForm" onsubmit="submitContactForm(event)">
+      <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name" />
+      <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email" />
+      <textarea name="message" rows="5" placeholder="Your Message" required aria-label="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p id="contactMsg" class="confirmation">Thank you for your message! We'll get back to you soon.</p>
+  </section>
+
+  <section id="privacy" class="policy-section" aria-label="Privacy policy">
+    <h2>Privacy Policy</h2>
+    <p>Your privacy is important to us. We collect minimal personal information and never share your data with third parties without your consent. We use cookies to improve your browsing experience and to provide personalized offers.</p>
+    <p>If you have any questions about your data, feel free to contact us.</p>
+  </section>
+
+  <section id="returns" class="policy-section" aria-label="Return policy">
+    <h2>Return Policy</h2>
+    <p>We want you to be happy with your purchase. If you have any issues with your cake, please contact us within 24 hours of delivery. We offer refunds or replacements for cakes that do not meet your expectations or have quality issues.</p>
+    <p>Custom cakes may not be eligible for returns unless there is a quality issue. Please review your order details carefully.</p>
+  </section>
+
+  <footer>
+    <p>Contact us at: <a href="mailto:sweetdelights@example.com" style="color: white;">sweetdelights@example.com</a></p>
+    <nav aria-label="Footer navigation">
+      <a href="#privacy">Privacy Policy</a> |
+      <a href="#returns">Return Policy</a> |
+      <a href="#contact">Contact</a>
+    </nav>
     <p>&copy; 2025 Sweet Delights. All rights reserved.</p>
   </footer>
 
-  <a href="https://wa.me/1234567890" target="_blank" class="whatsapp-btn" title="Chat with us on WhatsApp">💬</a>
+  <a href="https://wa.me/1234567890" target="_blank" class="whatsapp-btn" aria-label="Chat with us on WhatsApp" title="Chat with us on WhatsApp">💬</a>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
-
-    function handleFormSubmit(event) {
+    // Newsletter subscribe handler
+    function subscribeNewsletter(event) {
       event.preventDefault();
-      document.getElementById('confirmationMessage').style.display = 'block';
-      event.target.reset();
+      const emailInput = document.getElementById('emailInput');
+      const msg = document.getElementById('newsletterMsg');
+
+      if (emailInput.value.trim() !== '') {
+        msg.style.display = 'block';
+        emailInput.value = '';
+        setTimeout(() => {
+          msg.style.display = 'none';
+        }, 4000);
+      }
+    }
+
+    // Contact form handler
+    function submitContactForm(event) {
+      event.preventDefault();
+      const form = event.target;
+      const msg = document.getElementById('contactMsg');
+
+      // simulate submission success
+      msg.style.display = 'block';
+      form.reset();
+
+      setTimeout(() => {
+        msg.style.display = 'none';
+      }, 5000);
     }
   </script>
 </body>
